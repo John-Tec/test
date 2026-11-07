@@ -1,187 +1,31 @@
-// Simulación de Base de Datos (JSON) con temáticas de ADSO
-const lessonsData = [
-    {
-        id: 1,
-        title: "¿Qué es una API REST?",
-        category: "Backend",
-        time: "3 min",
-        summary: "Comprende cómo se comunican el Frontend y el Backend mediante HTTP.",
-        content: "<p>Una <b>API REST</b> es una interfaz que permite que dos sistemas se comuniquen entre sí usando el protocolo HTTP (como la web).</p><br><p>Utiliza métodos estándar como:</p><ul><li><b>GET:</b> Para obtener datos.</li><li><b>POST:</b> Para crear datos.</li><li><b>PUT:</b> Para actualizar.</li><li><b>DELETE:</b> Para borrar.</li></ul><p>Los datos suelen enviarse en formato <code>JSON</code>.</p>",
-        question: "¿Qué método HTTP se usa generalmente para OBTENER datos?",
-        options: ["POST", "GET", "DELETE"],
-        correct: 1, // Índice de la respuesta correcta (GET)
-        completed: false
-    },
-    {
-        id: 2,
-        title: "Los 3 pilares de Scrum",
-        category: "Metodologías",
-        time: "2 min",
-        summary: "Transparencia, Inspección y Adaptación explicados rápidamente.",
-        content: "<p>Scrum es un marco de trabajo ágil basado en el empirismo. Sus tres pilares son:</p><br><p>1. <b>Transparencia:</b> Todos saben qué está pasando.<br>2. <b>Inspección:</b> Revisar constantemente el progreso hacia la meta.<br>3. <b>Adaptación:</b> Ajustar el proceso si algo sale mal.</p>",
-        question: "¿Cuál NO es un pilar de Scrum?",
-        options: ["Transparencia", "Documentación Extensa", "Adaptación"],
-        correct: 1,
-        completed: false
-    },
-    {
-        id: 3,
-        title: "Flexbox: Centrar un Div",
-        category: "Frontend",
-        time: "2 min",
-        summary: "El truco definitivo de CSS para centrar elementos vertical y horizontalmente.",
-        content: "<p>Olvídate de sufrir centrando elementos. Con <b>Flexbox</b> solo necesitas aplicar estas 3 líneas al contenedor padre:</p><br><pre style='background:#000; padding:10px; border-radius:5px;'>.padre {\n  display: flex;\n  justify-content: center; /* Horizontal */\n  align-items: center; /* Vertical */\n}</pre>",
-        question: "¿Qué propiedad alinea los elementos verticalmente en Flexbox (dirección por defecto)?",
-        options: ["justify-content", "align-items", "display-flex"],
-        correct: 1,
-        completed: false
-    },
-    {
-        id: 4,
-        title: "Sentencia INNER JOIN",
-        category: "Bases de Datos",
-        time: "4 min",
-        summary: "Aprende a unir dos tablas relacionales en SQL fácilmente.",
-        content: "<p>El <code>INNER JOIN</code> busca coincidencias entre dos tablas. Si tienes una tabla <b>Usuarios</b> y otra <b>Pedidos</b>, puedes unirlas así:</p><br><pre style='background:#000; padding:10px; border-radius:5px;'>SELECT Usuarios.nombre, Pedidos.fecha\nFROM Usuarios\nINNER JOIN Pedidos ON Usuarios.id = Pedidos.usuario_id;</pre>",
-        question: "¿Qué palabra clave especifica la condición de unión en un JOIN?",
-        options: ["WHERE", "ON", "WITH"],
-        correct: 1,
-        completed: false
-    },
-    {
-        id: 5,
-        title: "Comandos básicos de Git",
-        category: "Backend",
-        time: "3 min",
-        summary: "El flujo básico para guardar tus cambios en el repositorio.",
-        content: "<p>Para guardar tu código usando Git, recuerda siempre esta secuencia de 3 pasos:</p><br><p>1. <code>git add .</code> (Prepara los archivos)<br>2. <code>git commit -m 'mensaje'</code> (Guarda una instantánea)<br>3. <code>git push</code> (Sube los cambios a GitHub/GitLab)</p>",
-        question: "¿Qué comando sube tus commits locales a la nube (GitHub)?",
-        options: ["git commit", "git upload", "git push"],
-        correct: 2,
-        completed: false
-    }
+const lessons = [
+  {id:1,title:'¿Qué es una API REST?',category:'Backend',time:3,summary:'Descubre cómo se comunican las aplicaciones a través de la web.',symbol:'{ }',content:'<p>Una <strong>API REST</strong> permite que dos aplicaciones se comuniquen mediante HTTP. Piensa en ella como un puente: recibe una petición y devuelve una respuesta, normalmente en formato JSON.</p><p>Los métodos más habituales son <strong>GET</strong> para consultar, <strong>POST</strong> para crear, <strong>PUT</strong> para actualizar y <strong>DELETE</strong> para eliminar datos.</p>',question:'¿Qué método HTTP se utiliza generalmente para obtener datos?',options:['POST','GET','DELETE'],correct:1},
+  {id:2,title:'Los 3 pilares de Scrum',category:'Metodologías',time:2,summary:'Tres ideas esenciales para trabajar mejor en equipo.',symbol:'✳',content:'<p>Scrum es un marco de trabajo ágil que ayuda a los equipos a aprender y adaptarse mientras construyen un producto. Se apoya en tres pilares:</p><ul><li><strong>Transparencia:</strong> hacer visible la información importante.</li><li><strong>Inspección:</strong> revisar con frecuencia el progreso.</li><li><strong>Adaptación:</strong> ajustar el rumbo cuando sea necesario.</li></ul>',question:'¿Cuál de estos NO es un pilar de Scrum?',options:['Transparencia','Documentación extensa','Adaptación'],correct:1},
+  {id:3,title:'Flexbox: centrar un div',category:'Frontend',time:2,summary:'Alinea elementos en CSS sin darle más vueltas.',symbol:'＋',content:'<p>Flexbox facilita la distribución y alineación de elementos. Para centrar el contenido en ambos ejes, aplica estas propiedades al contenedor padre:</p><pre>.padre {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}</pre><p>Con la dirección predeterminada de Flexbox, <strong>justify-content</strong> alinea horizontalmente y <strong>align-items</strong> verticalmente.</p>',question:'Con la dirección por defecto, ¿qué propiedad alinea verticalmente?',options:['justify-content','align-items','display-flex'],correct:1},
+  {id:4,title:'Entiende el INNER JOIN',category:'Bases de Datos',time:4,summary:'Conecta información de dos tablas con una consulta SQL.',symbol:'◒',content:'<p><strong>INNER JOIN</strong> combina filas de dos tablas cuando existe una coincidencia entre ellas. La condición de unión se define con <code>ON</code>.</p><pre>SELECT usuarios.nombre, pedidos.fecha\nFROM usuarios\nINNER JOIN pedidos\n  ON usuarios.id = pedidos.usuario_id;</pre><p>El resultado solo incluye las filas que tienen coincidencia en ambas tablas.</p>',question:'¿Qué palabra clave define la condición de unión?',options:['WHERE','ON','WITH'],correct:1},
+  {id:5,title:'Tus primeros pasos con Git',category:'Backend',time:3,summary:'Guarda y comparte tus cambios con tres comandos.',symbol:'↗',content:'<p>Git registra versiones de tu trabajo. Un flujo básico para compartir cambios es:</p><ul><li><code>git add .</code> prepara los archivos.</li><li><code>git commit -m "mensaje"</code> guarda una instantánea local.</li><li><code>git push</code> envía los commits a un repositorio remoto.</li></ul>',question:'¿Qué comando envía tus commits a un repositorio remoto?',options:['git commit','git upload','git push'],correct:2}
 ];
-
-// Variables globales
-const grid = document.getElementById('lessons-grid');
-const modal = document.getElementById('lesson-modal');
-const closeModal = document.getElementById('close-modal');
-const btnComplete = document.getElementById('btn-complete');
-const progressBar = document.getElementById('daily-progress');
-let currentLessonId = null;
-let progress = 0;
-
-// 1. Renderizar Tarjetas
-function renderLessons(filter = 'all') {
-    grid.innerHTML = '';
-    
-    const filteredLessons = filter === 'all' 
-        ? lessonsData 
-        : lessonsData.filter(lesson => lesson.category === filter);
-
-    filteredLessons.forEach(lesson => {
-        const card = document.createElement('div');
-        card.className = `card ${lesson.completed ? 'completed' : ''}`;
-        
-        card.innerHTML = `
-            <div>
-                <div class="card-header">
-                    <span class="badge">${lesson.category}</span>
-                    <span class="time"><i class="fa-regular fa-clock"></i> ${lesson.time}</span>
-                </div>
-                <h3>${lesson.title}</h3>
-                <p>${lesson.summary}</p>
-            </div>
-            <button class="btn-start" onclick="openLesson(${lesson.id})">
-                ${lesson.completed ? '<i class="fa-solid fa-check"></i> Completado' : 'Iniciar Cápsula'}
-            </button>
-        `;
-        grid.appendChild(card);
-    });
+const $ = s => document.querySelector(s);
+const storageKey = 'bitabit-progress-v1';
+let state = {completed:[], saved:[], dates:[]};
+try { const saved = JSON.parse(localStorage.getItem(storageKey)); if(saved && Array.isArray(saved.completed) && Array.isArray(saved.saved) && Array.isArray(saved.dates)) state = saved; } catch (_) {}
+let category='all', view='inicio', currentLesson=null, previousFocus=null;
+const persist=()=>{try{localStorage.setItem(storageKey,JSON.stringify(state))}catch(_){}};
+const todayString = date => `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+function streak(){const dates=new Set(state.dates);let date=new Date();if(!dates.has(todayString(date)))date.setDate(date.getDate()-1);let count=0;while(dates.has(todayString(date))){count++;date.setDate(date.getDate()-1)}return count}
+function updateStats(){const done=lessons.filter(l=>state.completed.includes(l.id));$('#completed-stat').textContent=done.length;$('#minutes-stat').textContent=done.reduce((sum,l)=>sum+l.time,0);$('#xp-stat').textContent=done.length*10;$('#streak-count').textContent=streak();$('#saved-count').textContent=state.saved.length;$('#progress-label').textContent=`${done.length} de ${lessons.length} lecciones`;$('#progress-bar').style.width=`${done.length/lessons.length*100}%`}
+function render(){
+  const query=$('#search').value.trim().toLocaleLowerCase('es');
+  const visible=lessons.filter(l=>(category==='all'||l.category===category)&&(view!=='guardados'||state.saved.includes(l.id))&&(view!=='progreso'||state.completed.includes(l.id))&&`${l.title} ${l.summary} ${l.category}`.toLocaleLowerCase('es').includes(query));
+  $('#lessons-grid').innerHTML=visible.map(l=>{const saved=state.saved.includes(l.id),done=state.completed.includes(l.id);return `<article class="card"><div class="card-art art-${l.id}"><span class="art-corner">BIT A BIT / 0${l.id}</span><span class="art-orbit"></span><span class="art-symbol">${l.symbol}</span><span class="art-number">0${l.id} / 05</span><button class="save-btn ${saved?'saved':''}" data-save="${l.id}" aria-label="${saved?'Quitar de guardados':'Guardar cápsula'}: ${l.title}" aria-pressed="${saved}">${saved?'♥':'♡'}</button></div><div class="card-body"><div class="card-meta"><span>${l.category}</span><span class="time">◷ &nbsp;${l.time} min</span></div><h3>${l.title}</h3><p>${l.summary}</p><div class="card-bottom"><span class="level">${done?'Completada':'Nivel inicial'}</span><button class="start-btn" data-open="${l.id}">${done?'Repasar':'Empezar'} <span>↗</span></button></div></div></article>`}).join('');
+  $('#empty-state').hidden=visible.length>0;
+  const empty=$('#empty-state');
+  empty.querySelector('h3').textContent=view==='guardados'&&!state.saved.length?'Aún no tienes cápsulas guardadas.':view==='progreso'&&!state.completed.length?'Tu primera cápsula te está esperando.':'No encontramos cápsulas por aquí.';
+  empty.querySelector('p').textContent=view==='guardados'&&!state.saved.length?'Guarda las que te interesen con el corazón.':view==='progreso'&&!state.completed.length?'Completa una lección para verla aquí.':'Prueba con otra búsqueda o categoría.';
+  updateStats();
 }
-
-// 2. Filtrado por categorías
-document.querySelectorAll('.cat-btn').forEach(button => {
-    button.addEventListener('click', (e) => {
-        document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-        e.target.classList.add('active');
-        renderLessons(e.target.dataset.category);
-    });
-});
-
-// 3. Abrir Modal con la lección
-function openLesson(id) {
-    const lesson = lessonsData.find(l => l.id === id);
-    currentLessonId = id;
-
-    document.getElementById('modal-category').innerText = lesson.category;
-    document.getElementById('modal-title').innerText = lesson.title;
-    document.getElementById('modal-body').innerHTML = lesson.content;
-    document.getElementById('modal-question').innerText = lesson.question;
-    
-    const optionsContainer = document.getElementById('modal-options');
-    optionsContainer.innerHTML = '';
-    
-    btnComplete.disabled = true; // Deshabilitar hasta que responda bien
-
-    lesson.options.forEach((opt, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.innerText = opt;
-        btn.onclick = () => checkAnswer(btn, index, lesson.correct);
-        optionsContainer.appendChild(btn);
-    });
-
-    modal.style.display = 'flex';
-}
-
-// 4. Validar respuesta del Quiz
-function checkAnswer(selectedBtn, selectedIndex, correctIndex) {
-    const allOptions = document.querySelectorAll('.option-btn');
-    allOptions.forEach(btn => btn.disabled = true); // Bloquear botones
-
-    if (selectedIndex === correctIndex) {
-        selectedBtn.classList.add('correct');
-        btnComplete.disabled = false; // Habilitar botón de completar
-    } else {
-        selectedBtn.classList.add('wrong');
-        allOptions[correctIndex].classList.add('correct'); // Mostrar la correcta
-        setTimeout(() => {
-            // Permitir reintentar después de 1.5 seg
-            allOptions.forEach(btn => {
-                btn.disabled = false;
-                btn.classList.remove('wrong', 'correct');
-            });
-        }, 1500);
-    }
-}
-
-// 5. Completar lección y actualizar progreso
-btnComplete.addEventListener('click', () => {
-    const lesson = lessonsData.find(l => l.id === currentLessonId);
-    if (!lesson.completed) {
-        lesson.completed = true;
-        updateProgress();
-    }
-    modal.style.display = 'none';
-    
-    // Obtener filtro actual para re-renderizar correctamente
-    const activeCategory = document.querySelector('.cat-btn.active').dataset.category;
-    renderLessons(activeCategory);
-});
-
-function updateProgress() {
-    const completedCount = lessonsData.filter(l => l.completed).length;
-    const total = lessonsData.length;
-    const percentage = (completedCount / total) * 100;
-    progressBar.style.width = `${percentage}%`;
-}
-
-// Cerrar modal
-closeModal.addEventListener('click', () => modal.style.display = 'none');
-window.addEventListener('click', (e) => {
-    if (e.target === modal) modal.style.display = 'none';
-});
-
-// Inicializar la app
-renderLessons();
+function setView(next){view=next;category='all';$('#search').value='';document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b.dataset.category==='all'));document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.view===next));const labels={inicio:['INICIO','Explora las cápsulas','Pequeñas lecciones para llevar tus ideas más lejos.'],explorar:['EXPLORAR','Explora las cápsulas','Pequeñas lecciones para llevar tus ideas más lejos.'],guardados:['GUARDADOS','Tus cápsulas guardadas','Tus favoritos, siempre a mano.'],progreso:['MI PROGRESO','Tu camino recorrido','Cada cápsula completada es un paso más.']};$('#breadcrumb-current').textContent=labels[next][0];$('#section-title').innerHTML=`${labels[next][1]} <span>✳</span>`;$('#section-description').textContent=labels[next][2];render();if(next!=='inicio')$('#lecciones').scrollIntoView({behavior:'smooth'});else window.scrollTo({top:0,behavior:'smooth'})}
+function openLesson(id){const lesson=lessons.find(l=>l.id===id);if(!lesson)return;currentLesson=lesson;previousFocus=document.activeElement;$('#modal-category').textContent=lesson.category;$('#modal-time').textContent=`◷ ${lesson.time} min`;$('#modal-title').textContent=lesson.title;$('#modal-body').innerHTML=lesson.content;$('#modal-question').textContent=lesson.question;$('#modal-options').innerHTML=lesson.options.map((o,i)=>`<button class="option-btn" data-answer="${i}">${o}</button>`).join('');$('#quiz-feedback').textContent='';$('#btn-complete').disabled=true;$('#btn-complete').innerHTML=state.completed.includes(id)?'Terminar repaso <span>↗</span>':'Completar cápsula <span>↗</span>';$('#lesson-modal').hidden=false;document.body.style.overflow='hidden';$('#close-modal').focus()}
+function closeLesson(){$('#lesson-modal').hidden=true;document.body.style.overflow='';currentLesson=null;if(previousFocus&&document.contains(previousFocus))previousFocus.focus()}
+document.addEventListener('click',e=>{const nav=e.target.closest('[data-view]');if(nav){setView(nav.dataset.view);return}const filter=e.target.closest('[data-category]');if(filter){category=filter.dataset.category;document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b===filter));render();return}const save=e.target.closest('[data-save]');if(save){const id=Number(save.dataset.save);state.saved=state.saved.includes(id)?state.saved.filter(x=>x!==id):[...state.saved,id];persist();render();return}const open=e.target.closest('[data-open]');if(open){openLesson(Number(open.dataset.open));return}const answer=e.target.closest('[data-answer]');if(answer&&currentLesson){const correct=Number(answer.dataset.answer)===currentLesson.correct;document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('wrong','correct'));answer.classList.add(correct?'correct':'wrong');$('#quiz-feedback').textContent=correct?'¡Muy bien! Ya puedes completar esta cápsula.':'Casi. Inténtalo de nuevo, ¡tú puedes!';$('#btn-complete').disabled=!correct;return}});
+$('#search').addEventListener('input',render);$('#featured-button').addEventListener('click',()=>openLesson((lessons.find(l=>!state.completed.includes(l.id))||lessons[0]).id));$('#close-modal').addEventListener('click',closeLesson);$('#lesson-modal').addEventListener('click',e=>{if(e.target===$('#lesson-modal'))closeLesson()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#lesson-modal').hidden)closeLesson();if(e.key==='Tab'&&!$('#lesson-modal').hidden){const focusable=[...$('#lesson-modal').querySelectorAll('button:not(:disabled)')];if(e.shiftKey&&document.activeElement===focusable[0]){e.preventDefault();focusable[focusable.length-1].focus()}else if(!e.shiftKey&&document.activeElement===focusable[focusable.length-1]){e.preventDefault();focusable[0].focus()}}});$('#btn-complete').addEventListener('click',()=>{if(!currentLesson)return;if(!state.completed.includes(currentLesson.id)){state.completed.push(currentLesson.id);const today=todayString(new Date());if(!state.dates.includes(today))state.dates.push(today);persist()}closeLesson();render()});$('#reset-filters').addEventListener('click',()=>setView('explorar'));render();

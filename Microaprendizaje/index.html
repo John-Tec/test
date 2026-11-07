@@ -1,83 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADSO-Bits | Microaprendizaje de Software</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Iconos de FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f7f2">
+  <title>bit a bit — Aprende algo nuevo cada día</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body>
-
-    <!-- Barra de Navegación -->
-    <header class="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-code"></i> ADSO<span>Bits</span>
-        </div>
-        <div class="user-stats">
-            <div class="streak" title="Días de racha">
-                <i class="fa-solid fa-fire"></i> <span id="streak-count">5</span> días
-            </div>
-            <div class="progress-container">
-                <span>Progreso Diario:</span>
-                <div class="progress-bar">
-                    <div class="progress" id="daily-progress"></div>
-                </div>
-            </div>
-            <div class="profile">
-                <img src="https://ui-avatars.com/api/?name=Aprendiz+Sena&background=39A900&color=fff" alt="Perfil">
-            </div>
-        </div>
-    </header>
-
-    <!-- Sección Principal (Hero) -->
-    <section class="hero">
-        <h1>Aprende desarrollo de software en <span>5 minutos</span></h1>
-        <p>Cápsulas de conocimiento rápido diseñadas para aprendices ADSO.</p>
-        
-        <!-- Filtros de Categorías -->
-        <div class="categories">
-            <button class="cat-btn active" data-category="all">Todos</button>
-            <button class="cat-btn" data-category="Frontend">Frontend</button>
-            <button class="cat-btn" data-category="Backend">Backend</button>
-            <button class="cat-btn" data-category="Bases de Datos">Bases de Datos</button>
-            <button class="cat-btn" data-category="Metodologías">Ágil / Scrum</button>
-        </div>
-    </section>
-
-    <!-- Contenedor de Micro-lecciones (Se llena con JS) -->
-    <main class="container">
-        <div class="grid" id="lessons-grid">
-            <!-- Las tarjetas se generarán dinámicamente aquí -->
-        </div>
-    </main>
-
-    <!-- Modal para ver la lección -->
-    <div class="modal-overlay" id="lesson-modal">
-        <div class="modal-content">
-            <span class="close-btn" id="close-modal">&times;</span>
-            <span class="badge" id="modal-category">Categoría</span>
-            <h2 id="modal-title">Título de la lección</h2>
-            <div class="modal-body" id="modal-body">
-                <!-- Contenido de la lección -->
-            </div>
-            
-            <!-- Mini Quiz de validación -->
-            <div class="quiz-section">
-                <h4><i class="fa-solid fa-clipboard-question"></i> Pregunta Rápida:</h4>
-                <p id="modal-question">¿Pregunta?</p>
-                <div id="modal-options" class="options-container"></div>
-            </div>
-
-            <button class="btn-complete" id="btn-complete" disabled>Completar Cápsula (+10 XP)</button>
-        </div>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#inicio" aria-label="Bit a bit, inicio"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span>bit a bit<span class="brand-dot">.</span></span></a>
+    <div class="side-label">TU ESPACIO</div>
+    <nav class="side-nav" aria-label="Navegación principal">
+      <button class="nav-item active" data-view="inicio"><span class="nav-icon">▦</span> Inicio</button>
+      <button class="nav-item" data-view="explorar"><span class="nav-icon">◉</span> Explorar</button>
+      <button class="nav-item" data-view="guardados"><span class="nav-icon">♧</span> Guardados <span class="saved-count" id="saved-count">0</span></button>
+      <button class="nav-item" data-view="progreso"><span class="nav-icon">▥</span> Mi progreso</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="side-note"><span class="side-spark">✳</span><strong>Un poco cada día.</strong><p>Grandes ideas empiezan con pequeños pasos.</p></div>
+      <div class="side-footer">HECHO PARA TU CURIOSIDAD <span>↗</span></div>
     </div>
+  </aside>
 
-    <footer>
-        <p>Proyecto Formativo ADSO - SENA © 2023 | Desarrollado con HTML, CSS y JS</p>
-    </footer>
+  <main class="main" id="inicio">
+    <header class="topbar">
+      <div class="breadcrumb">MI ESPACIO <span>/</span> <strong id="breadcrumb-current">INICIO</strong></div>
+      <div class="top-actions"><div class="streak"><span>✺</span> <strong id="streak-count">0</strong> días de racha</div><div class="avatar" aria-label="Perfil de aprendiz">A</div></div>
+    </header>
+    <div class="content">
+      <section class="welcome" id="welcome-section">
+        <div><div class="eyebrow"><span class="eyebrow-dot"></span> TU MOMENTO DE APRENDER</div><h1>Hola, aprendiz <span>✳</span></h1><p>Un pequeño paso hoy, una gran idea mañana.</p></div>
+        <div class="date-block"><span>UN BUEN DÍA PARA</span><strong>aprender algo nuevo <span>↗</span></strong></div>
+      </section>
 
-    <script src="script.js"></script>
+      <section class="hero" aria-label="Lección destacada">
+        <div class="hero-copy"><div class="hero-kicker"><span>✦</span> TU DOSIS DE CONOCIMIENTO</div><h2>Aprender se ve<br>bien en ti<span>.</span></h2><p>Ideas pequeñas, grandes posibilidades.<br>Dedícate unos minutos y sigue creciendo.</p><button class="hero-button" id="featured-button">Empezar a aprender <span>↗</span></button><div class="hero-foot">HECHO PARA MENTES CURIOSAS <span>✳</span></div></div>
+        <div class="hero-image"><img src="assets/lesson-hero.png" alt="Escultura abstracta de cintas azules y una esfera naranja"><div class="image-stamp"><span>UN POCO<br>CADA DÍA</span><b>✳</b></div></div>
+      </section>
+
+      <section class="stats" aria-label="Tu actividad"><div class="stat-intro"><span class="stat-icon">↗</span><div><strong>Tu aprendizaje,</strong><small>paso a paso</small></div></div><div class="stat"><strong id="completed-stat">0</strong><span>lecciones<br>completadas</span></div><div class="stat"><strong id="minutes-stat">0</strong><span>minutos<br>aprendiendo</span></div><div class="stat"><strong id="xp-stat">0</strong><span>puntos de<br>experiencia</span></div><div class="stat-progress"><div><strong>Tu progreso</strong><span id="progress-label">0 de 5 lecciones</span></div><div class="progress-track"><div id="progress-bar"></div></div></div></section>
+
+      <section class="lessons-section" id="lecciones">
+        <div class="section-heading"><div><div class="eyebrow muted">UN POCO DE TODO, PARA TI</div><h2 id="section-title">Explora las cápsulas <span>✳</span></h2><p id="section-description">Pequeñas lecciones para llevar tus ideas más lejos.</p></div><span class="section-index">01 / APRENDER</span></div>
+        <div class="toolbar"><div class="filters" role="group" aria-label="Filtrar por categoría"><button class="filter active" data-category="all">Todas <span id="all-count">05</span></button><button class="filter" data-category="Frontend">Frontend</button><button class="filter" data-category="Backend">Backend</button><button class="filter" data-category="Bases de Datos">Bases de datos</button><button class="filter" data-category="Metodologías">Metodologías</button></div><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Buscar cápsulas" aria-label="Buscar cápsulas"></label></div>
+        <div class="lesson-grid" id="lessons-grid"></div><div class="empty-state" id="empty-state" hidden><span>✳</span><h3>No encontramos cápsulas por aquí.</h3><p>Prueba con otra búsqueda o categoría.</p><button id="reset-filters">Ver todas las cápsulas ↗</button></div>
+      </section>
+      <footer><span>© 2026 BIT A BIT <span class="footer-star">✳</span> APRENDER ES UN VIAJE</span><span>HECHO CON CURIOSIDAD, PARA TI. ↗</span></footer>
+    </div>
+  </main>
+</div>
+<div class="modal-overlay" id="lesson-modal" hidden>
+  <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-top"><span class="modal-brand">✳ &nbsp; BIT A BIT / CÁPSULA</span><button class="close-btn" id="close-modal" aria-label="Cerrar lección">×</button></div>
+    <div class="modal-meta"><span id="modal-category"></span><span id="modal-time"></span></div><h2 id="modal-title"></h2><div class="modal-body" id="modal-body"></div>
+    <div class="quiz-section"><div class="quiz-label">✦ &nbsp; PONTE A PRUEBA</div><h3 id="modal-question"></h3><div id="modal-options" class="options-container"></div><p id="quiz-feedback" aria-live="polite"></p></div>
+    <button class="btn-complete" id="btn-complete" disabled>Completar cápsula <span>↗</span></button><p class="modal-hint">Responde correctamente para completar esta cápsula.</p>
+  </div>
+</div>
 </body>
 </html>
