@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADSO-Bits | Microaprendizaje de Software</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Barra de Navegación -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-code"></i> ADSO<span>Bits</span>
+        </div>
+        <div class="user-stats">
+            <div class="streak" title="Días de racha">
+                <i class="fa-solid fa-fire"></i> <span id="streak-count">5</span> días
+            </div>
+            <div class="progress-container">
+                <span>Progreso Diario:</span>
+                <div class="progress-bar">
+                    <div class="progress" id="daily-progress"></div>
+                </div>
+            </div>
+            <div class="profile">
+                <img src="https://ui-avatars.com/api/?name=Aprendiz+Sena&background=39A900&color=fff" alt="Perfil">
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Principal (Hero) -->
+    <section class="hero">
+        <h1>Aprende desarrollo de software en <span>5 minutos</span></h1>
+        <p>Cápsulas de conocimiento rápido diseñadas para aprendices ADSO.</p>
+        
+        <!-- Filtros de Categorías -->
+        <div class="categories">
+            <button class="cat-btn active" data-category="all">Todos</button>
+            <button class="cat-btn" data-category="Frontend">Frontend</button>
+            <button class="cat-btn" data-category="Backend">Backend</button>
+            <button class="cat-btn" data-category="Bases de Datos">Bases de Datos</button>
+            <button class="cat-btn" data-category="Metodologías">Ágil / Scrum</button>
+        </div>
+    </section>
+
+    <!-- Contenedor de Micro-lecciones (Se llena con JS) -->
+    <main class="container">
+        <div class="grid" id="lessons-grid">
+            <!-- Las tarjetas se generarán dinámicamente aquí -->
+        </div>
+    </main>
+
+    <!-- Modal para ver la lección -->
+    <div class="modal-overlay" id="lesson-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <span class="badge" id="modal-category">Categoría</span>
+            <h2 id="modal-title">Título de la lección</h2>
+            <div class="modal-body" id="modal-body">
+                <!-- Contenido de la lección -->
+            </div>
+            
+            <!-- Mini Quiz de validación -->
+            <div class="quiz-section">
+                <h4><i class="fa-solid fa-clipboard-question"></i> Pregunta Rápida:</h4>
+                <p id="modal-question">¿Pregunta?</p>
+                <div id="modal-options" class="options-container"></div>
+            </div>
+
+            <button class="btn-complete" id="btn-complete" disabled>Completar Cápsula (+10 XP)</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Proyecto Formativo ADSO - SENA © 2023 | Desarrollado con HTML, CSS y JS</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
